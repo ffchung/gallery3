@@ -106,6 +106,8 @@ class movie_Core {
 
     $cmd = escapeshellcmd($ffmpeg) . " -i " . escapeshellarg($file_path) . " 2>&1";
     $result = `$cmd`;
+    // remove string within ( )
+    $result = preg_replace('/\(.+?\)/', '',  $result);
     if (preg_match("/Stream.*?Video:.*?(\d+)x(\d+)/", $result, $regs)) {
       list ($width, $height) = array($regs[1], $regs[2]);
     } else {
