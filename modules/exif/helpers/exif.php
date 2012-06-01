@@ -28,7 +28,12 @@ class exif_Core {
   static function extract($item) {
     $keys = array();
     // Only try to extract EXIF from photos
-    if ($item->is_photo() && $item->mime_type == "image/jpeg") {
+    // try on mp4 file as it may have EXIF
+    if (
+        ($item->is_photo() && $item->mime_type == "image/jpeg")
+        || ($item->is_movie() && $item->mime_type == "video/mp4")
+        )
+    {
       $data = array();
       require_once(MODPATH . "exif/lib/exif.php");
       $exif_raw = read_exif_data_raw($item->file_path(), false);
