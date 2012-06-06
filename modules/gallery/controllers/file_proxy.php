@@ -30,8 +30,8 @@ class File_Proxy_Controller extends Controller {
   const ALLOW_PRIVATE_GALLERY = true;
   public function __call($function, $args) {
     
-    // Force Turn off the compress as most image file already compressed.
-    // And the compress will slow down the response.
+    // Force zlib compression off as most image files are already compressed
+    // and compression will slow down the reponse
     if(ini_get('zlib.output_compression'))
       ini_set('zlib.output_compression', 'Off');
     
