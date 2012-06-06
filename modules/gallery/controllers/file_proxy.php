@@ -32,7 +32,7 @@ class File_Proxy_Controller extends Controller {
     
     // Force zlib compression off as most image files are already compressed
     // and compression will slow down the reponse
-    if(ini_get('zlib.output_compression'))
+    if (ini_get('zlib.output_compression'))
       ini_set('zlib.output_compression', 'Off');
     
     // request_uri: gallery3/var/albums/foo/bar.jpg?m=1234
